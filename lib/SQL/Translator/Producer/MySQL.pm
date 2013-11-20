@@ -606,6 +606,7 @@ sub create_field
     }
     for my $qual ( 'character set', 'collate', 'on update' ) {
         my $val = $extra{ $qual } || $extra{ uc $qual } or next;
+        $val = $$val if ref $val eq 'SCALAR';
         $field_def .= " $qual $val";
     }
 
